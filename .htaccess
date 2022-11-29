@@ -1,0 +1,127 @@
+<IfModule mod_rewrite.c>
+<IfModule mod_negotiation.c>
+Options -MultiViews -Indexes
+</IfModule>
+
+        RewriteEngine On
+        Options -Indexes
+
+        <Files .htaccess>
+        order allow,deny
+        deny from all
+        </Files>
+
+        <Files composer.json>
+        order allow,deny
+        deny from all
+        </Files>
+
+        <Files composer.lock>
+        order allow,deny
+        deny from all
+        </Files>
+
+        <Files .env>
+        order allow,deny
+        deny from all
+        </Files>
+
+        # Handle Authorization Header
+        RewriteCond %{HTTP:Authorization} .
+        RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+
+        # Redirect Trailing Slashes If Not A Folder...
+        RewriteCond %{REQUEST_FILENAME} !-d
+        RewriteCond %{REQUEST_URI} (.+)/$
+        RewriteRule ^ %1 [L,R=301]
+
+        RewriteEngine On
+        RewriteRule ^(.*)/subcategory /s/$1 [L,R=301,NC]
+
+        RewriteEngine on 
+        RewriteBase / 
+        RewriteRule ^category/(.*) /c/$1 [R=301,L]
+
+        RewriteEngine on 
+        RewriteBase / 
+        RewriteRule ^(.*)/(.*)/rssfeeds /rssfeeds/$1/$2 [R=301,L]
+
+        #If /photo12345/ then /photo/12345
+        RewriteEngine on 
+        RewriteRule ^(photo)(\d+)/(.*) /$1/$2/$3 [R=301,L,NC,NE]
+
+        #removing unwanted Pinterest arrays
+        RewriteEngine on 
+        RewriteRule ^(photo/\d+/[\w-]++). /$1 [R=301,L,NC,NE]
+
+        #removing unwanted symbols after s or c
+        RewriteEngine on 
+        RewriteRule ^((?:s|c)/[\w-]++). /$1 [R=301,L,NC,NE] 
+
+        RewriteEngine on 
+        RewriteBase / 
+        RewriteRule ^public/uploads/(.*) https://files.oyebesmartest.com/uploads/$1 [R=301,L]
+
+        RewriteEngine on 
+        RewriteBase / 
+        RewriteRule ^type/png_Image https://oyebesmartest.com/type/png-image [R=301,L]
+
+        RewriteEngine on 
+        RewriteBase / 
+        RewriteRule ^main-category/(.*) /type/$1 [R=301,L]
+
+        RewriteEngine on 
+        RewriteBase / 
+        RewriteRule ^(.*)%20(.*) -$1 [R=301,L]
+
+        RewriteCond %{HTTP_HOST} www.oyebesmartest.com
+        RewriteRule (.*) https://oyebesmartest.com/$1 [R=301,L]
+
+        RewriteCond %{HTTP_HOST} mail.oyebesmartest.com
+        RewriteRule (.*) https://oyebesmartest.com/$1 [R=301,L]
+
+        RewriteEngine On
+        RewriteCond %{HTTP_HOST} ^mail\.oyebesmartest\.com  [NC]
+        RewriteRule ^(.*) https://oyebesmartest.com/$1 [L,R=301]
+
+        RewriteEngine on
+        RewriteCond %{HTTP_HOST} ^mail\.oyebesmartest\.com
+        RewriteRule ^(.*)$ https://oyebesmartest.com/$1 [L]
+
+        #RewriteCond %{QUERY_STRING} "^([^/]*?)(?:/|%20)+([^/]+?(?:/|%20)+.*)$"
+        #RewriteRule ^ %{REQUEST_URI}?%1-%2 [N,NE]
+
+        #RewriteCond %{QUERY_STRING} "^([^/]*?)(?:/|%20)+([^/]+?)/?$"
+        #RewriteRule ^ %{REQUEST_URI}?%1-%2/ [L,R=302,NE]
+
+        RewriteEngine on  
+        RewriteRule ^s/pubg-mobi$ s/pubg-mobile-wallpapers-hd [L,R=302,NE]
+
+        RewriteEngine on 
+        RewriteBase / 
+        RewriteRule ^s/(.*)/rss.xml /s/$1/rssfeeds [R=301,L]
+
+        RewriteEngine on 
+        RewriteBase / 
+        RewriteRule ^tagspubg-dark-wallpaper https://oyebesmartest.com/s/pubg-mobile-wallpapers-hd [R=301,L]
+
+        RewriteEngine On
+        RewriteRule ^c/wallpapers-4k-hd /c/amoled-wallpapers [L,R=301,NC]
+
+        RewriteEngine ON
+        ##Doing external redirect for index.php here.
+        RewriteCond %{ENV:REDIRECT_STATUS} ^$
+        RewriteRule ^index\.php/?$ /? [R=301,L]
+
+        ##Doing external redirect to remove index.php here.
+        RewriteRule ^(.*/)?index\.php/(.*) /$1$2? [R=301,L]
+
+        ##Handling home page with internal rewrite here.
+        RewriteRule ^/?$ index.php [L]
+
+        # Handle Front Controller...
+        RewriteCond %{REQUEST_FILENAME} !-d
+        RewriteCond %{REQUEST_FILENAME} !-f
+        RewriteRule ^ index.php [L]
+
+</IfModule>

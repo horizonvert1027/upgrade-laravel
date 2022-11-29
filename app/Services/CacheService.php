@@ -1,0 +1,160 @@
+<?php
+
+
+namespace App\Services;
+
+
+use Illuminate\Filesystem\Filesystem;
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Cache;
+use Symfony\Component\HttpFoundation\JsonResponse;
+
+class CacheService
+{
+    private $files;
+    private $cache_path;
+
+    public function __construct()
+    {
+        $this->files = new Filesystem();
+        $this->cache_path = public_path() . '/cache/';
+    }
+
+    /**
+     * @param $request
+     * @return string
+     */
+    public function cacheKey($url)
+    {
+        return md5($url);
+    }
+
+    /**
+     * @return bool
+     */
+    protected function makeCacheDirectory()
+    {
+        return $this->files->makeDirectory($this->cache_path, 0775, true, true);
+    }
+
+    /**
+     * @param $key
+     * @return bool
+     */
+    public function isAlreadyCached($key)
+    {
+        return Cache::has($key);
+    }
+
+    /**
+     * @param $key
+     * @return mixed
+     */
+    public function getCache($key)
+    {
+        if (!$this->files->isDirectory($this->cache_path)){
+            return '';
+        }
+        $directives = scandir($this->cache_path);
+        array_splice($directives,0,2);
+
+        foreach ($directives as $directive){
+            $folder = $directive;
+            $cache_folders = scandir($this->cache_path.$directive);
+            array_splice($cache_folders,0,2);
+
+            foreach ($cache_folders as $cache_file){
+                $explode_cache = explode('.',$cache_file);
+                if($explode_cache[0] == $key){
+                    $extension = $explode_cache[1];
+                    $content_type = 'text/html';
+                    if ($extension == 'xml'){
+                        $content_type = 'application/xml';
+                    }elseif ($extension == 'json'){
+                        $content_type = 'application/json';
+                    }
+                    return ['content' => file_get_contents($this->cache_path.'/'.$folder.'/'.$cache_file), 'content_type' => $content_type];
+                }
+            }
+        }
+        return '';
+    }
+
+    /**
+     * remove folder
+     */
+    protected function removeFolder($key = '')
+    {
+        $this->files->deleteDirectory($this->cache_path.$key);
+    }
+
+    /**
+     * @return bool
+     */
+    public function clearCache($slug='')
+    {
+        $this->removeFolder($slug);
+//        if ($slug){
+//            $url = env('APP_URL').config('constants.cache.urls')[$slug];
+//            $cache_key = $this->cacheKey($url);
+//            Cache::forget($cache_key);
+//            $this->removeFolder($slug);
+//        }else{
+//            Artisan::call('cache:clear');
+//            $this->removeFolder();
+//        }
+
+        return true;
+    }
+
+    /**
+     * @param $response
+     * @return string
+     */
+    protected function getFileExtension($response)
+    {
+        $contentType = $response->headers->get('Content-Type');
+        if (in_array($contentType, ['text/xml', 'application/xml'])) {
+            return '.xml';
+        }
+        if ($response instanceof JsonResponse || $contentType == 'application/json') {
+            return '.json';
+        }
+        return '.html';
+    }
+
+    /**
+     * @param $key
+     * @param $response
+     * @param $value
+     */
+    protected function storeCacheFiles($key, $response, $value, $folder_name)
+    {
+        $this->cache_path = $this->cache_path.'/'.$folder_name;
+        $this->makeCacheDirectory();
+        $extension = $this->getFileExtension($response);
+        $this->files->put($this->cache_path .'/' . $key . $extension, $value, true);
+    }
+
+    public function cacheUrls()
+    {
+        return config('constants.cache.urls');
+    }
+
+    /**
+     * @param $key
+     * @param $response
+     * @return bool
+     */
+    public function cache($cache_key, $response, $folder_name)
+    {
+        $cache = $this->getCache($cache_key);
+        if (!isset($cache['content']) && !isset($cache['content_type'])) {
+            $value = $response->getContent();
+            $this->storeCacheFiles($cache_key, $response, $value, $folder_name);
+//            Cache::put($cache_key, $value, now()->addDays(config('constants.cache.time')));
+            return true;
+        }
+        return false;
+    }
+}

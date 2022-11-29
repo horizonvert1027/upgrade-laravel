@@ -1,0 +1,55 @@
+<?php
+
+namespace App\Http\Middleware;
+
+use App\Services\CacheService;
+use Closure;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
+class CacheResponse
+{
+    /**
+     * Handle an incoming request.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param \Closure $next
+     * @return mixed
+     */
+    public function handle($request, Closure $next)
+    {
+        $cache_service = new CacheService();
+        $cache_key = $cache_service->cacheKey($request->fullUrl());
+        if ($cache_service->isAlreadyCached($cache_key) && config('constants.cache.is_active')) {
+            $cache = $cache_service->getCache($cache_key);
+            return response($cache['content'])->header('Content-Type', $cache['content_type']);
+        }
+        return $next($request);
+    }
+
+    /**
+     * Handle tasks after the response has been sent to the browser.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param \Illuminate\Http\Response $response
+     * @return void
+     */
+    public function terminate($request, $response)
+    {
+        $user = Auth::user();
+        if (config('constants.cache.is_active')){
+            if (isset($user) && in_array($user->role, ['admin', 'editor'])){
+                //don't cache
+            }else{
+                $cache_service = new CacheService();
+                $cache_key = $cache_service->cacheKey($request->fullUrl());
+                $cache_urls = $cache_service->cacheUrls();
+                foreach ($cache_urls as $key => $url) {
+                    if ($request->is($url)) {
+                        $cache_service->cache($cache_key, $response, $key);
+                    }
+                }
+            }
+        }
+    }
+}

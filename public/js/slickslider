@@ -1,0 +1,34 @@
+$(() => {
+  var createSlick = () => {
+    let slider = $(".slider");
+
+    slider.not(".slick-initialized").slick({
+      autoplay: false,
+      infinite: true,
+      dots: true,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      responsive: [
+        {
+          breakpoint: 1024,
+          settings: {
+            slidesToShow: 2,
+            slidesToScroll: 2,
+            adaptiveHeight: true
+          }
+        },
+        {
+          breakpoint: 600,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1
+          }
+        }
+      ]
+    });
+  };
+
+  createSlick();
+
+  $(window).on("resize orientationchange", createSlick);
+});

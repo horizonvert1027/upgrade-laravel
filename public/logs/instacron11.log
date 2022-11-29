@@ -1,0 +1,57 @@
+    exec('rm -f ' . storage_path('logs/*.log'));
+
+    exec('rm -f ' . base_path('*.log'));    exec('rm -f ' . storage_path('logs/*.log'));
+
+    exec('rm -f ' . base_path('*.log'));    exec('rm -f ' . storage_path('logs/*.log'));
+
+    exec('rm -f ' . base_path('*.log'));    exec('rm -f ' . storage_path('logs/*.log'));
+
+    exec('rm -f ' . base_path('*.log'));    exec('rm -f ' . storage_path('logs/*.log'));
+
+    exec('rm -f ' . base_path('*.log'));    exec('rm -f ' . storage_path('logs/*.log'));
+
+    exec('rm -f ' . base_path('*.log'));    exec('rm -f ' . storage_path('logs/*.log'));
+
+    exec('rm -f ' . base_path('*.log'));    exec('rm -f ' . storage_path('logs/*.log'));
+
+    exec('rm -f ' . base_path('*.log'));    exec('rm -f ' . storage_path('logs/*.log'));
+
+    exec('rm -f ' . base_path('*.log'));    exec('rm -f ' . storage_path('logs/*.log'));
+
+    exec('rm -f ' . base_path('*.log'));    exec('rm -f ' . storage_path('logs/*.log'));
+
+    exec('rm -f ' . base_path('*.log'));    exec('rm -f ' . storage_path('logs/*.log'));
+
+    exec('rm -f ' . base_path('*.log'));    exec('rm -f ' . storage_path('logs/*.log'));
+
+    exec('rm -f ' . base_path('*.log'));    exec('rm -f ' . storage_path('logs/*.log'));
+
+    exec('rm -f ' . base_path('*.log'));    exec('rm -f ' . storage_path('logs/*.log'));
+
+    exec('rm -f ' . base_path('*.log'));    exec('rm -f ' . storage_path('logs/*.log'));
+
+    exec('rm -f ' . base_path('*.log'));    exec('rm -f ' . storage_path('logs/*.log'));
+
+    exec('rm -f ' . base_path('*.log'));    exec('rm -f ' . storage_path('logs/*.log'));
+
+    exec('rm -f ' . base_path('*.log'));    exec('rm -f ' . storage_path('logs/*.log'));
+
+    exec('rm -f ' . base_path('*.log'));    exec('rm -f ' . storage_path('logs/*.log'));
+
+    exec('rm -f ' . base_path('*.log'));    exec('rm -f ' . storage_path('logs/*.log'));
+
+    exec('rm -f ' . base_path('*.log'));    exec('rm -f ' . storage_path('logs/*.log'));
+
+    exec('rm -f ' . base_path('*.log'));    exec('rm -f ' . storage_path('logs/*.log'));
+
+    exec('rm -f ' . base_path('*.log'));    exec('rm -f ' . storage_path('logs/*.log'));
+
+    exec('rm -f ' . base_path('*.log'));    exec('rm -f ' . storage_path('logs/*.log'));
+
+    exec('rm -f ' . base_path('*.log'));    exec('rm -f ' . storage_path('logs/*.log'));
+
+    exec('rm -f ' . base_path('*.log'));    exec('rm -f ' . storage_path('logs/*.log'));
+
+    exec('rm -f ' . base_path('*.log'));    exec('rm -f ' . storage_path('logs/*.log'));
+
+    exec('rm -f ' . base_path('*.log'));

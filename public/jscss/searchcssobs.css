@@ -1,0 +1,175 @@
+.gsc-modal-background-image-visible {
+    opacity: 0;
+    z-index: 0!important;
+    position: relative!important
+}
+.gsc-results-wrapper-overlay {
+    width: 100%;
+    position: relative!important;
+    left: 0;
+    z-index: 9!important
+}
+.gsc-overflow-hidden {
+    overflow: auto!important
+}
+.gsc-results-close-btn-visible {
+    opacity: 0
+}
+.gsc-search-button-v2 {
+    width: 38px;
+    padding: 11px 10px;
+    margin: 0;
+    border-radius: 0;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px
+}
+.gsc-results .gsc-cursor-box {
+    margin: 10px;
+    margin-top: 20px!important
+}
+.gsc-results .gsc-cursor-box {
+    border: 2px solid #0c3a72
+}
+.gsc-cursor {
+    color: #0c3a72;
+    fill: #0c3a72;
+    font-size: 20px
+}
+.gsc-refinementHeader.gsc-refinementhActive,
+.gsc-tabHeader.gsc-tabhActive {
+    font-size: 16px;
+    padding: 4px
+}
+.gsc-refinementHeader.gsc-refinementhInactive,
+.gsc-tabHeader.gsc-tabhInactive {
+    padding: 4px;
+    font-size: 16px
+}
+@media (min-width: 1289px) {
+    .gsc-search-box-tools .gsc-search-box .gsc-input {
+        padding: 4.5px;
+        padding-right: 0
+    }
+}
+.search-noresults {
+    display: none;
+    font-family: tahoma;
+    font-size: 20px;
+    padding: 10px;
+    text-align: -webkit-center;
+    margin-top: 18vh;
+}
+.watext {
+    margin-bottom: 5px;
+    text-align: -webkit-center
+}
+.gsc-results .gsc-cursor {
+    display: block;
+    text-align: -webkit-center
+}
+.gsc-above-wrapper-area,
+.gsc-positioningWrapper,
+form.gsc-search-box.gsc-search-box-tools {
+    display: none
+}
+.gsc-control-cse.gsc-control-cse-en {
+    margin: 20px;
+    border-radius: 4px;
+    background: var(--box-clr);
+    border: none
+}
+.gs-imageResult-popup .gs-image-thumbnail-box {
+    padding: 1px!important
+}
+.gs-imageResult-popup .gs-image-box {
+    width: auto
+}
+.gs-imageResult .gs-image-box .gs-image {
+    border-radius: 4px
+}
+.gsc-results .gsc-imageResult,
+.gsc-webResult.gsc-result {
+    border-color: #fff;
+    background-color: inherit
+}
+.gsc-results .gsc-cursor-box .gsc-cursor-page {
+    padding: 0 6px;
+    border-radius: 2px;
+    background: var(--btn-clr);
+    color: var(--white-clr)
+}
+.gs-selectedImageResult {
+    height: min-content!important
+}
+.gs-imagePreviewArea {
+    display: none!important
+}
+@media (max-width: 500px) {
+    .gsc-expansionArea {
+        display: block!important;
+        column-count: 1!important;
+        column-gap: 3px!important
+    }
+    .gsc-results .gsc-cursor {
+        color: var(--black-clr)!important;
+        fill: var(--black-clr)!important;
+        background: var(--link-clr)!important;
+        border-radius: 6px
+    }
+    .gsc-results .gsc-cursor-box {
+        border: none!important
+    }
+}
+.gs-mobilePreview {
+    display: none!important
+}
+.gsc-results .gsc-imageResult,
+.gsc-webResult.gsc-result {
+    border-color: var(--light-white-clr)!important;
+    background-color: var(--light-white-clr)!important
+}
+@media (min-width: 501px) {
+    .gsc-results .gsc-cursor-box {
+        border: none!important
+    }
+    .gsc-result {
+        margin: 5px!important
+    }
+    .gsc-results .gsc-cursor {
+        display: block!important
+    }
+    .gsc-results .gsc-cursor-box .gsc-cursor-current-page {
+        border-color: #1a73e8!important;
+        background-color: var(--btn-clr)!important;
+        color: #1a73e8!important;
+        padding: 5px!important;
+        width: 35px;
+        height: 35px;
+        display: inline-grid!important;
+        text-decoration: none!important
+    }
+    .gsc-results .gsc-cursor-box .gsc-cursor-page {
+            border-color: var(--main-clr)!important;
+    background-color: var(--link-clr)!important;
+    color: var(--main-clr) !important;
+    padding: 5px!important;
+    width: 35px;
+    height: 35px;
+    display: inline-grid!important;
+    margin: 6px;
+    border-radius: 25px;
+    text-decoration: none!important;
+    }
+}
+
+.gs-imageResult.gs-result.gs-no-results-result {
+    display: none !important;
+}
+a.btn.btn-primary.nvbtn {
+    max-width: max-content;
+    font-size: 17px;
+    padding: 5px 15px 6px;
+    font-weight: 500;
+    margin-top: 12px;
+    border-radius: 4px;
+}

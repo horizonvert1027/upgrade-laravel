@@ -1,0 +1,39 @@
+<ins class="adsbygoogle mbads"
+    style="display:inline-block"
+    data-ad-client="ca-pub-7015538341079527"
+    data-ad-slot="1052702960">
+</ins>
+
+
+<ins class="adsbygoogle deskads"
+    style="display:inline-block"
+    data-ad-client="ca-pub-7015538341079527"
+    data-ad-slot="1052702960">
+</ins>
+
+<style>
+
+
+@media(max-width: 800px)
+        { 
+        .mbads
+        { 
+        min-width:250px;
+        max-width:450px;
+        width: 100%; 
+        height: 260px; 
+        } 
+}
+
+@media(min-width: 801px)
+        {
+         .deskads
+         { 
+         min-width:698px;
+         max-width:776px;
+         width:100%;
+         height:250px 
+         } 
+ }
+
+</style>

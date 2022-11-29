@@ -1,0 +1,62 @@
+<?php
+
+namespace App\Http\Middleware;
+
+use Closure;
+use Illuminate\Contracts\Auth\Guard;
+use App\Models\AdminSettings;
+
+class sellOption {
+
+	/**
+	 * The Guard implementation.
+	 *
+	 * @var Guard
+	 */
+	protected $auth;
+
+	/**
+	 * Create a new filter instance.
+	 *
+	 * @param  Guard  $auth
+	 * @return void
+	 */
+	public function __construct(Guard $auth)
+	{
+		$this->auth = $auth;
+	}
+
+	/**
+	 * Handle an incoming request.
+	 *
+	 * @param  \Illuminate\Http\Request  $request
+	 * @param  \Closure  $next
+	 * @return mixed
+	 */
+	public function handle($request, Closure $next)
+	{
+    $settings = AdminSettings::first();
+
+		if ($settings->sell_option == 'off'
+        && $request->is('user/dashboard')
+
+        || $settings->sell_option == 'off'
+        && $request->is('user/dashboard/*')
+
+				|| $settings->sell_option == 'off'
+				&& $request->isMethod('post')
+
+				|| $settings->sell_option == 'off'
+				&& $request->isMethod('put')
+
+				|| $settings->sell_option == 'off'
+				&& $request->isMethod('delete')
+				
+      ) {
+      abort(404);
+		}
+
+		return $next($request);
+	}
+
+}
